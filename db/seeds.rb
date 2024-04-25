@@ -47,10 +47,11 @@ gossips[0].tags
 #vérifier la ville de user index 5
 users[5].city
 
-#création de 25 messages aléatoires
+#création de 25 messages aléatoires + attribution d'un destinataire obligatoire
 messages = []
 25.times do
     message = Message.create!(user: users.sample, message: Faker::Lorem.paragraph(sentence_count:5))
+    recipient = Recipient.create(user: users.sample, message: message)
     messages << message
 end
 
@@ -67,7 +68,7 @@ users[5].messages.each do |message|
     puts message.message  
 end
 
-#vérifier les destinataires de chaque message de l'user index 5
+#vérifier les destinataires de chaque message de l'user index 5 | !!! comme les messages sont attribués au hasard, certains messages n'ont pas de destinataire
 messages[5].users.each do |user|
     puts user.first_name
 end

@@ -28,3 +28,6 @@ rails console # teste la bdd
     /migrate #toutes les migrations des différents models
     /seeds.rb #toutes les commandes pour vérifier et tester la bdd
 ````
+## BDD Diagram
+
+![app_gossip_bdd_diagram.jpeg](app_gossip_bdd_diagram.jpeg)

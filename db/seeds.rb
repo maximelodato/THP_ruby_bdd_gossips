@@ -54,25 +54,20 @@ messages = []
     messages << message
 end
 
-#création de 50 destinataires de users existants
-recipients = []
-50.times do 
-    recipient = Recipient.create
-    recipients << recipient
-end
-
 #attribution de plusieurs messages avec un ou plusieurs destinataires
 25.times do
-    recipient_message = RecipientMessage.create!(recipient: recipients.sample, message: messages.sample)
+    recipient = Recipient.create(user: users.sample, message: messages.sample)
 end
 
-#vérifier les messages du user à l'index 5
-users[5].city
+#vérifier la ville du user à l'index 5
+puts users[5].city.name
 
 #vérifier les messages du user à l'index 5
-users[5].messages
-
-#vérifier les identifiants des destinataires de chaque message de l'user index 5
 users[5].messages.each do |message|
-    message.recipients
+    puts message.message  
+end
+
+#vérifier les destinataires de chaque message de l'user index 5
+messages[5].users.each do |user|
+    puts user.first_name
 end

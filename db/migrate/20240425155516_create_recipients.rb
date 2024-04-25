@@ -1,7 +1,8 @@
 class CreateRecipients < ActiveRecord::Migration[7.1]
   def change
     create_table :recipients do |t|
-      t.references :recipient, foreign_key: {to_table: :users}
+      t.belongs_to :user, index: true
+      t.belongs_to :message, index: true
       t.timestamps
     end
   end

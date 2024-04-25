@@ -1,4 +1,4 @@
 class Recipient < ApplicationRecord
-    has_many :recipient_messages
-    has_many :messages, through: :recipient_messages
+    belongs_to :user
+    belongs_to :message
 end

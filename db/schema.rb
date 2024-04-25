@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_25_160143) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_25_155516) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.integer "zip_code"
@@ -44,20 +44,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_160143) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "recipient_messages", force: :cascade do |t|
-    t.integer "recipient_id"
+  create_table "recipients", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["message_id"], name: "index_recipient_messages_on_message_id"
-    t.index ["recipient_id"], name: "index_recipient_messages_on_recipient_id"
-  end
-
-  create_table "recipients", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipient_id"], name: "index_recipients_on_recipient_id"
+    t.index ["message_id"], name: "index_recipients_on_message_id"
+    t.index ["user_id"], name: "index_recipients_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -80,5 +73,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_160143) do
     t.index ["city_id"], name: "index_users_on_city_id"
   end
 
-  add_foreign_key "recipients", "users", column: "recipient_id"
 end

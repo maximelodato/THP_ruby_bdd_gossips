@@ -1,0 +1,5 @@
+<!-- app/views/users/show.html.erb -->
+<h1>Profil de <%= @user.first_name %> <%= @user.last_name %></h1>
+<p>Email: <%= @user.email %></p>
+<p>Date de création: <%= @user.created_at.strftime("%d/%m/%Y") %></p>
+<!-- Ajouter d'autres informations importantes ici -->

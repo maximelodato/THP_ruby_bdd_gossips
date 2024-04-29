@@ -1,0 +1,4 @@
+<!-- app/views/gossips/show.html.erb -->
+<h1><%= @gossip.title %></h1>
+<p><%= @gossip.description %></p>
+<p>Auteur: <%= link_to @gossip.user.first_name, user_path(@gossip.user) %></p>

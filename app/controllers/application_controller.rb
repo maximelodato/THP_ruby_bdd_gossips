@@ -7,20 +7,16 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
   end
 
-  
-end
+  private
 
+  def logged_in?
+    !!current_user
+  end
 
-private
-
-def current_user
-  @current_user ||= User.find(session[:user_id]) if session[:user_id]
-end
-
-def authenticate_user!
-  unless current_user
-    redirect_to login_path, alert: "Veuillez vous connecter pour continuer."
+  def authenticate_user!
+    unless logged_in?
+      flash[:alert] = 'Vous devez être connecté pour poster un commentaire.'
+      redirect_to login_path
+    end
   end
 end
-
-

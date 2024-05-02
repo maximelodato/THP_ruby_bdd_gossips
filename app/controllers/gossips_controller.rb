@@ -2,10 +2,15 @@ class GossipsController < ApplicationController
   before_action :set_user, only: [:index, :show, :contact]
   before_action :authenticate_user!, only: [:create]
   
+  def edit
+    @gossip = Gossip.find(params[:gossip_id]) # Récupérer le gossip associé
+    @comment = @gossip.comments.find(params[:id]) # Récupérer le commentaire correspondant
+  end
+  
   def show
     @gossip = Gossip.find_by(id: params[:id])
     if @gossip
-      @comments = @gossip.comments || [] # Initialise @comments à une liste vide si aucun commentaire n'est associé à ce potin
+      @comments = @gossip.comments || []
       @comment = @gossip.comments.build
     else
       redirect_to gossips_path, alert: 'Gossip not found.'
@@ -44,6 +49,14 @@ class GossipsController < ApplicationController
 
   def confirm_delete
     @gossip = Gossip.find(params[:id])
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to gossip_path(@comment.gossip), notice: 'Commentaire mis à jour avec succès.'
+    else
+      render 'edit'
+    end
   end
 
   private

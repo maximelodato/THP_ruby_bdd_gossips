@@ -1,13 +1,9 @@
 <!-- app/views/comments/edit.html.erb -->
 <h1>Modifier le Commentaire</h1>
 
-<%= form_with(model: @comment, url: comment_path(@comment), method: :patch) do |form| %>
-  <div class="form-group">
-    <%= form.label :content, "Contenu du Commentaire" %>
-    <%= form.text_area :content, class: "form-control" %>
-  </div>
+<%= form_with(model: @comment, url: gossip_comment_path(@gossip, @comment), method: :patch) do |form| %>
+  <%= form.label :content %>
+  <%= form.text_field :content %>
 
-  <%= form.submit "Enregistrer les Modifications", class: "btn btn-primary" %>
+  <%= form.submit "Modifier" %>
 <% end %>
-
-<%= button_to "Supprimer le Commentaire", comment_path(@comment), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer ce commentaire ?' }, class: "btn btn-danger", style: "margin-top: 10px;" %>

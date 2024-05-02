@@ -1,0 +1,21 @@
+<h1>Connexion</h1>
+
+<%= form_with scope: :session, url: login_path, method: :post, local: true do |form| %>
+  <% if flash[:alert] %>
+    <p><%= flash[:alert] %></p>
+  <% end %>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Se connecter" %>
+  </div>
+<% end %>

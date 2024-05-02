@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="row">
+    <% @gossips.each do |gossip| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= link_to gossip.title, gossip_path(gossip) %><!-- Lien cliquable pour voir les détails du potin -->
+            </h5>
+            <p class="card-text">
+              <%= gossip.description %> <!-- Description brève du potin -->
+            </p>
+            <% if gossip.content.present? %>
+              <p class="card-text">
+                <%= gossip.content %> <!-- Affichage du contenu complet du potin, si présent -->
+              </p>
+            <% end %>
+            <p class="card-text">
+              <small class="text-muted">
+                Par <% if gossip.user %>
+                      <%= link_to gossip.user.first_name, user_path(gossip.user) %>
+                    <% else %>
+                      Anonyme
+                    <% end %>, 
+                le <%= gossip.created_at.strftime("%d/%m/%Y") %> <!-- Informations sur l'auteur et la date -->
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

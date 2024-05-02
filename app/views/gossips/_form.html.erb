@@ -1,0 +1,29 @@
+<%= form_with(model: @gossip, local: true) do |form| %>
+  <% if @gossip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gossip.errors.count, "error") %> prevented this gossip from being saved:</h2>
+      <ul>
+      <% @gossip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, "Gossip Title:" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content, "Gossip Content:" %>
+    <%= form.text_area :content, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :author_name, "Your Name:" %>
+    <%= form.text_field :author_name, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Post Gossip", class: "btn btn-primary" %>
+<% end %>

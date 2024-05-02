@@ -70,3 +70,11 @@ end
 
 gem "rack"
 gem "rackup"
+gem "table_print"
+gem 'factory_bot_rails'
+gem 'jquery-rails' 
+gem 'bcrypt', '~> 3.1.7'
+
+group :development, :test do
+  gem 'rspec-rails'
+end

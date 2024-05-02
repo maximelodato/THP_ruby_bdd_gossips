@@ -1,5 +1,13 @@
-<!-- app/views/users/show.html.erb -->
-<h1>Profil de <%= @user.first_name %> <%= @user.last_name %></h1>
-<p>Email: <%= @user.email %></p>
-<p>Date de création: <%= @user.created_at.strftime("%d/%m/%Y") %></p>
-<!-- Ajouter d'autres informations importantes ici -->
+
+<div class="container mt-4">
+  <h1>Profil de l'utilisateur</h1>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">Age: <%= @user.age %></h6>
+      <p class="card-text"><strong>Description:</strong> <%= @user.description %></p>
+      <p class="card-text"><strong>Email:</strong> <%= @user.email %></p>
+      <p class="card-text"><strong>Ville:</strong> <%= @user.city.name %></p>
+    </div>
+  </div>
+</div>

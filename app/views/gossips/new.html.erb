@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Créer Gossip</h1>
+
+  <%= form_with(model: @gossip, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+    <% if @gossip.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Please fix the following <%= pluralize(@gossip.errors.count, "error") %>!</h4>
+        <ul>
+          <% @gossip.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :title, "Titre:", class: 'form-label' %>
+      <%= form.text_field :title, class: "form-control", placeholder: "Enter title" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :content, "Contenu:", class: 'form-label' %>
+      <%= form.text_area :content, class: "form-control", rows: 3, placeholder: "What's the gossip?" %>
+    </div>
+
+    <% if local_assigns.has_key? :author_name %>
+      <div class="mb-3">
+        <%= form.label :author_name, "Your Name:", class: 'form-label' %>
+        <%= form.text_field :author_name, class: "form-control", placeholder: "Your name here" %>
+      </div>
+    <% end %>
+
+    <%= form.submit "Créer Potin", class: "btn btn-primary" %>
+  <% end %>
+</div>

@@ -1,3 +1,4 @@
+# test_helper.rb
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
@@ -12,4 +13,12 @@ module ActiveSupport
 
     # Add more helper methods to be used by all tests here...
   end
+end
+
+# Créer 10 faux utilisateurs avec Factory Bot
+users = FactoryBot.create_list(:user, 10)
+
+# Créer des gossips associés à ces utilisateurs
+users.each do |user|
+  FactoryBot.create(:gossip, user: user)
 end

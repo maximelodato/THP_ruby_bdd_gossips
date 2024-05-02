@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_25_155516) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_02_095113) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.integer "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "gossip_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gossip_id"], name: "index_comments_on_gossip_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "gossip_tags", force: :cascade do |t|
@@ -29,10 +39,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_155516) do
 
   create_table "gossips", force: :cascade do |t|
     t.string "title"
-    t.text "description"
+    t.text "content"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_name"
+    t.string "author_name"
+    t.text "description"
     t.index ["user_id"], name: "index_gossips_on_user_id"
   end
 
@@ -42,6 +55,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_155516) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "recipients", force: :cascade do |t|
@@ -70,7 +88,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_155516) do
     t.integer "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.boolean "is_anonymous"
+    t.string "username"
+    t.string "password_digest"
     t.index ["city_id"], name: "index_users_on_city_id"
   end
 
+  add_foreign_key "comments", "gossips"
+  add_foreign_key "comments", "users"
 end

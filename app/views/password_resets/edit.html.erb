@@ -1,0 +1,15 @@
+<h1>Reset Password</h1>
+<%= form_with model: @user, url: password_reset_path(params[:id]), local: true, method: :patch do |form| %>
+  <%= hidden_field_tag :token, params[:token] %>
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Update Password" %>
+  </div>
+<% end %>

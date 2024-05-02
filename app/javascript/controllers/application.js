@@ -7,3 +7,8 @@ application.debug = false
 window.Stimulus   = application
 
 export { application }
+$(document).ready(function() {
+    $('#signup-link').click(function() {
+      $('#signup-modal').show();
+    });
+  });

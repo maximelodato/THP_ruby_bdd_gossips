@@ -5,7 +5,7 @@ class GossipsController < ApplicationController
   def show
     @gossip = Gossip.find_by(id: params[:id])
     if @gossip
-      @comments = @gossip.comments
+      @comments = @gossip.comments || [] # Initialise @comments à une liste vide si aucun commentaire n'est associé à ce potin
       @comment = @gossip.comments.build
     else
       redirect_to gossips_path, alert: 'Gossip not found.'

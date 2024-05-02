@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
   def create
     @gossip = Gossip.find(params[:gossip_id])
     @comment = @gossip.comments.build(comment_params)
@@ -6,7 +7,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @gossip, notice: 'Commentaire ajouté avec succès.'
     else
-      render 'gossips/show'
+      flash[:alert] = 'Vous devez être connecté pour poster un commentaire.'
+      redirect_to new_user_session_path
     end
   end
 

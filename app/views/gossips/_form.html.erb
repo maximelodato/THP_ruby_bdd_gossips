@@ -20,10 +20,13 @@
     <%= form.text_area :content, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :author_name, "Your Name:" %>
-    <%= form.text_field :author_name, class: "form-control" %>
-  </div>
+  <!-- Ajoutez le formulaire de commentaire ici -->
+  <%= form.fields_for :comments do |comment_form| %>
+    <div class="form-group">
+      <%= comment_form.text_area :content, placeholder: "Votre commentaire ici...", class: "form-control" %>
+    </div>
+  <% end %>
+  <!-- Fin du formulaire de commentaire -->
 
   <%= form.submit "Post Gossip", class: "btn btn-primary" %>
 <% end %>
